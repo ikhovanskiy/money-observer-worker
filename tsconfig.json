@@ -1,0 +1,27 @@
+{
+  "include": ["src", "tsconfig.json"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "lib": ["ESNext", "dom", "dom.iterable"],
+    "moduleResolution": "node",
+    "target": "ES2022",
+    "module": "ESNext",
+    "noImplicitAny": true,
+    "preserveConstEnums": false,
+    "strict": true,
+    "experimentalDecorators": true,
+    "useDefineForClassFields": true,
+    "strictNullChecks": true,
+    "ignoreDeprecations": "5.0",
+    "noUncheckedIndexedAccess": true,
+    "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    // "noUnusedLocals": true,
+    "skipLibCheck": true,
+    "outDir": "./dist",
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    // "noUnusedParameters": true
+  }
+}
