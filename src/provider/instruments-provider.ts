@@ -6,7 +6,7 @@ const API_PREFIX =
 
 class InstrumentsProvider {
   //Запрос на поиск инструментов.
-  public findInstrument = async (
+  static findInstrument = async (
     query: string,
     instrumentKind: string = "INSTRUMENT_TYPE_SHARE"
   ) => {

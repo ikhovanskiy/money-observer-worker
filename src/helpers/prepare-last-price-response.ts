@@ -15,11 +15,7 @@ const prepareLastPriceResponse = (
   return {
     instrumentName,
     price: Helpers.toNumber(lastPrice.price),
-    time: new Date(lastPrice.time).getTime(),
-    humanTime: {
-      time: new Date(lastPrice.time).toLocaleTimeString(),
-      date: new Date(lastPrice.time).toLocaleDateString(),
-    },
+    timestamp: new Date(lastPrice.time).valueOf(),
   };
 };
 

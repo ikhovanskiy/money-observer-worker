@@ -4,7 +4,7 @@ import { Logger } from "src/logger";
 import { Account } from "src/types";
 
 class AccountController {
-  static buy(account: Account, figi: FIGI, price: number): Account {
+  static buy(account: Account, figi: string, price: number): Account {
     const { balance } = account;
     const instrumentName = getInstrumentNameByFigi(figi);
 
@@ -17,11 +17,14 @@ class AccountController {
 
     account.balance -= price;
 
-    if (!account.instruments[figi]) {
-      account.instruments[figi] = {
-        buy: [price],
-        sell: [],
-        count: 1,
+    if (!account.instruments?.[figi]) {
+      account.instruments = {
+        ...(account.instruments ?? {}),
+        [figi]: {
+          buy: [price],
+          sell: [],
+          count: 1,
+        },
       };
     } else {
       account.instruments[figi].buy.push(price),
@@ -32,8 +35,8 @@ class AccountController {
     return account;
   }
 
-  static sell(account: Account, figi: FIGI, price: number): Account {
-    const instrument = account.instruments[figi];
+  static sell(account: Account, figi: string, price: number): Account {
+    const instrument = account.instruments?.[figi];
     const instrumentName = getInstrumentNameByFigi(figi);
 
     if (!instrument || instrument.count === 0) {
