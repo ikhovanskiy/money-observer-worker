@@ -4,7 +4,8 @@
     "watch:dev": "rollup -c rollup.config.ts --configPlugin typescript -w",
     "watch:start": "node -r dotenv/config --watch ./dist/worker.js",
     "dev": "npm-run-all --parallel watch:*",
-    "postinstall": "sh ./scripts/get-env.sh"
+    "postinstall": "sh ./scripts/get-env.sh",
+    "start": "pm2 start pm2.config.js"
   },
   "dependencies": {
     "@rollup/plugin-typescript": "^12.1.1",
