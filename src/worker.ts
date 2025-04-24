@@ -15,7 +15,7 @@ import { PG } from "src/pg";
 class Worker {
   private lastPriceProvider: LastPriceProvider;
 
-  private linearApproximationExperiments: LinearApproximationExperiments;
+  // private linearApproximationExperiments: LinearApproximationExperiments;
 
   private api: TinkoffInvestApi;
 
@@ -24,7 +24,7 @@ class Worker {
 
     this.lastPriceProvider = new LastPriceProvider(this.api);
 
-    this.linearApproximationExperiments = new LinearApproximationExperiments();
+    // this.linearApproximationExperiments = new LinearApproximationExperiments();
   }
 
   private lastPriceProviderCallback = async (lastPrice: LastPrice) => {
@@ -32,9 +32,9 @@ class Worker {
     if (!data) return;
     await PG.addLastPriceData(data);
 
-    await this.linearApproximationExperiments.processResponse(
-      data.instrumentName
-    );
+    // await this.linearApproximationExperiments.processResponse(
+    //   data.instrumentName
+    // );
   };
 
   private throttledLastPriceProviderCallback = throttle(
@@ -45,7 +45,7 @@ class Worker {
   public async init() {
     Logger.log("worker started");
 
-    this.linearApproximationExperiments.init();
+    // this.linearApproximationExperiments.init();
 
     this.lastPriceProvider.subscribe(
       [...Object.values(FIGI)],

@@ -1,4 +1,5 @@
 import { Pool } from "pg";
+import fs from "fs";
 import { Logger } from "src/logger";
 import { Account } from "src/types";
 import {
@@ -10,12 +11,23 @@ import {
   getLastPricesDataOutputSchema,
 } from "src/schemas/account-schema";
 
+const {
+  POSTGRESQL_PASSWORD,
+  POSTGRESQL_PORT,
+  POSTGRESQL_HOST,
+  POSTGRESQL_DATABASE,
+} = process.env;
+
 const pool = new Pool({
-  user: "admin",
-  host: "localhost",
-  database: "money_observer",
-  password: "admin",
-  port: 5432,
+  user: "i-khovanskiy",
+  host: POSTGRESQL_HOST,
+  database: POSTGRESQL_DATABASE,
+  password: POSTGRESQL_PASSWORD,
+  port: Number(POSTGRESQL_PORT),
+  ssl: {
+    rejectUnauthorized: true,
+    ca: fs.readFileSync("./RootCA.pem").toString(),
+  },
 });
 
 class PG {

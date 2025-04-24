@@ -2,7 +2,7 @@
   "scripts": {
     "build": "rollup -c rollup.config.ts --configPlugin typescript",
     "watch:dev": "rollup -c rollup.config.ts --configPlugin typescript -w",
-    "watch:start": "node --watch ./dist/worker.js",
+    "watch:start": "node -r dotenv/config --watch ./dist/worker.js",
     "dev": "npm-run-all --parallel watch:*",
     "postinstall": "sh ./scripts/get-env.sh"
   },
@@ -11,6 +11,7 @@
     "@types/pg": "^8.11.13",
     "bind-decorator": "^1.0.11",
     "date-fns": "^4.1.0",
+    "dotenv": "^16.5.0",
     "npm-run-all": "^4.1.5",
     "pg": "^8.14.1",
     "rollup": "^4.25.0",
